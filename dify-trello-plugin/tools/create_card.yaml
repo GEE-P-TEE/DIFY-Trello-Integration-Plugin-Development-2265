@@ -1,0 +1,96 @@
+identity:
+  name: create_trello_card
+  author: DIFY Community
+  label:
+    en_US: Create Trello Card
+    zh_Hans: 创建Trello卡片
+description:
+  human:
+    en_US: Create a new card in Trello with AI-generated content
+    zh_Hans: 使用AI生成的内容在Trello中创建新卡片
+  llm: Create a new Trello card with specified title, description, and optional metadata like labels and due dates
+
+parameters:
+  - name: card_title
+    type: string
+    required: true
+    label:
+      en_US: Card Title
+      zh_Hans: 卡片标题
+    human_description:
+      en_US: The title for the Trello card
+      zh_Hans: Trello卡片的标题
+    llm_description: The title that will be displayed on the Trello card
+    form: llm
+    
+  - name: card_description
+    type: string
+    required: true
+    label:
+      en_US: Card Description
+      zh_Hans: 卡片描述
+    human_description:
+      en_US: The description content for the card (will be truncated if over 10,000 characters)
+      zh_Hans: 卡片的描述内容（如果超过10,000字符将被截断）
+    llm_description: The detailed description content that will be added to the card
+    form: llm
+    
+  - name: board_id
+    type: string
+    required: true
+    label:
+      en_US: Board ID
+      zh_Hans: 看板ID
+    human_description:
+      en_US: The Trello board ID where the card will be created
+      zh_Hans: 将创建卡片的Trello看板ID
+    llm_description: The unique identifier of the Trello board
+    form: form
+    
+  - name: list_id
+    type: string
+    required: true
+    label:
+      en_US: List ID
+      zh_Hans: 列表ID
+    human_description:
+      en_US: The Trello list ID where the card will be placed
+      zh_Hans: 卡片将放置的Trello列表ID
+    llm_description: The unique identifier of the list within the board
+    form: form
+    
+  - name: labels
+    type: string
+    required: false
+    label:
+      en_US: Labels
+      zh_Hans: 标签
+    human_description:
+      en_US: Comma-separated list of label names to add to the card
+      zh_Hans: 要添加到卡片的标签名称，用逗号分隔
+    llm_description: Optional comma-separated list of label names
+    form: form
+    
+  - name: due_date
+    type: string
+    required: false
+    label:
+      en_US: Due Date
+      zh_Hans: 截止日期
+    human_description:
+      en_US: Due date for the card in YYYY-MM-DD format
+      zh_Hans: 卡片的截止日期，格式为YYYY-MM-DD
+    llm_description: Optional due date in YYYY-MM-DD format
+    form: form
+    
+  - name: assignee_id
+    type: string
+    required: false
+    label:
+      en_US: Assignee ID
+      zh_Hans: 指派人ID
+    human_description:
+      en_US: Trello member ID to assign the card to
+      zh_Hans: 要指派卡片的Trello成员ID
+    llm_description: Optional Trello member ID to assign the card
+    form: form

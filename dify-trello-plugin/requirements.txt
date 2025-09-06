@@ -1,0 +1,28 @@
+# DIFY Trello Upload Plugin Requirements
+# These dependencies should be available in the DIFY environment
+
+# Core HTTP library for API requests
+requests>=2.25.0
+
+# Date and time handling (usually included in Python standard library)
+# datetime - included in Python standard library
+
+# Regular expressions (included in Python standard library)
+# re - included in Python standard library
+
+# JSON handling (included in Python standard library)
+# json - included in Python standard library
+
+# Time utilities (included in Python standard library)
+# time - included in Python standard library
+
+# Type hints (included in Python 3.5+)
+# typing - included in Python standard library
+
+# URL parsing (included in Python standard library)
+# urllib.parse - included in Python standard library
+
+# Note: This plugin is designed to work with DIFY's existing environment
+# and should not require additional package installations beyond what
+# DIFY already provides. The requests library is commonly available
+# in most Python environments including DIFY.

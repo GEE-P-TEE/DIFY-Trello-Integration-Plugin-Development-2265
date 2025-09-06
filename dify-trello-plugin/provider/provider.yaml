@@ -1,0 +1,67 @@
+identity:
+  author: DIFY Community
+  name: trello
+  label:
+    en_US: Trello
+    zh_Hans: Trello
+  description:
+    en_US: Trello project management and collaboration tool integration
+    zh_Hans: Trello项目管理和协作工具集成
+  icon: icon.svg
+  tags:
+    - productivity
+    - project-management
+    - task-management
+
+supported_model_types: []
+
+configurate_methods:
+  - customizable-model
+
+provider_credential_schema:
+  credential_form_schemas:
+    - variable: trello_api_key
+      label:
+        en_US: Trello API Key
+        zh_Hans: Trello API密钥
+      type: secret-input
+      required: true
+      placeholder:
+        en_US: Enter your Trello API Key
+        zh_Hans: 输入您的Trello API密钥
+      help:
+        en_US: Get your API key from https://trello.com/app-key
+        zh_Hans: 从 https://trello.com/app-key 获取您的API密钥
+    - variable: trello_token
+      label:
+        en_US: Trello Token
+        zh_Hans: Trello令牌
+      type: secret-input
+      required: true
+      placeholder:
+        en_US: Enter your Trello Token
+        zh_Hans: 输入您的Trello令牌
+      help:
+        en_US: Generate a token from the Trello developer page
+        zh_Hans: 从Trello开发者页面生成令牌
+
+tool_credential_schema:
+  credential_form_schemas:
+    - variable: trello_api_key
+      label:
+        en_US: Trello API Key
+        zh_Hans: Trello API密钥
+      type: secret-input
+      required: true
+      placeholder:
+        en_US: Enter your Trello API Key
+        zh_Hans: 输入您的Trello API密钥
+    - variable: trello_token
+      label:
+        en_US: Trello Token
+        zh_Hans: Trello令牌
+      type: secret-input
+      required: true
+      placeholder:
+        en_US: Enter your Trello Token
+        zh_Hans: 输入您的Trello令牌
