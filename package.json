@@ -1,13 +1,13 @@
 {
-  "name": "quest-react-starter",
+  "name": "dify-trello-plugin-ui",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "npm run lint && vite build",
     "lint": "eslint .",
-    "lint:error": "eslint . --quiet", 
+    "lint:error": "eslint . --quiet",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -20,7 +20,10 @@
     "react-icons": "^5.4.0",
     "echarts": "^5.5.0",
     "echarts-for-react": "^3.0.2",
-    "date-fns": "4.1.0"
+    "date-fns": "4.1.0",
+    "axios": "^1.6.0",
+    "react-hook-form": "^7.48.0",
+    "react-hot-toast": "^2.4.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
