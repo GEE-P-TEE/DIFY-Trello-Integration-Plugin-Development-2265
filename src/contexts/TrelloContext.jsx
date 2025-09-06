@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { trelloAPI } from '../services/trelloAPI';
+import { trelloService } from '../services/trelloService';
 import toast from 'react-hot-toast';
 
 const TrelloContext = createContext();
@@ -45,13 +45,14 @@ export const TrelloProvider = ({ children }) => {
     
     setLoading(true);
     try {
-      const user = await trelloAPI.validateCredentials(credentials);
+      const user = await trelloService.validateCredentials(credentials);
       setConnected(true);
       await loadBoards();
-      toast.success(`Connected as ${user.fullName}`);
+      toast.success(`Connected as ${user.fullName || user.username || 'Unknown User'}`);
     } catch (error) {
       setConnected(false);
-      toast.error('Invalid credentials');
+      toast.error(`Connection failed: ${error.message}`);
+      console.error('Connection validation error:', error);
     } finally {
       setLoading(false);
     }
@@ -66,10 +67,11 @@ export const TrelloProvider = ({ children }) => {
     if (!credentials) return;
     
     try {
-      const boardsData = await trelloAPI.getBoards(credentials);
+      const boardsData = await trelloService.getBoards(credentials);
       setBoards(boardsData);
     } catch (error) {
-      toast.error('Failed to load boards');
+      toast.error(`Failed to load boards: ${error.message}`);
+      console.error('Load boards error:', error);
     }
   };
 
@@ -79,9 +81,9 @@ export const TrelloProvider = ({ children }) => {
     setLoading(true);
     try {
       const [listsData, labelsData, membersData] = await Promise.all([
-        trelloAPI.getLists(credentials, boardId),
-        trelloAPI.getLabels(credentials, boardId),
-        trelloAPI.getMembers(credentials, boardId)
+        trelloService.getLists(credentials, boardId),
+        trelloService.getLabels(credentials, boardId),
+        trelloService.getMembers(credentials, boardId)
       ]);
       
       setLists(listsData);
@@ -89,7 +91,8 @@ export const TrelloProvider = ({ children }) => {
       setMembers(membersData);
       setSelectedBoard(boardId);
     } catch (error) {
-      toast.error('Failed to load board data');
+      toast.error(`Failed to load board data: ${error.message}`);
+      console.error('Load board data error:', error);
     } finally {
       setLoading(false);
     }
@@ -101,7 +104,7 @@ export const TrelloProvider = ({ children }) => {
     }
     
     try {
-      const result = await trelloAPI.createCard(credentials, cardData);
+      const result = await trelloService.createCard(credentials, cardData);
       
       // Add to history
       const historyEntry = {

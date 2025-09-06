@@ -3,12 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import { useTrello } from '../contexts/TrelloContext';
+import ConnectionStatus from './ConnectionStatus';
 
 const { FiHome, FiPlus, FiSettings, FiClock, FiTrello } = FiIcons;
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const { connected } = useTrello();
+  const { connected, loading } = useTrello();
 
   const navItems = [
     { path: '/', icon: FiHome, label: 'Dashboard' },
@@ -33,13 +34,8 @@ const Layout = ({ children }) => {
           </div>
           
           {/* Connection Status */}
-          <div className="mt-4 p-3 rounded-lg bg-gray-50">
-            <div className="flex items-center space-x-2">
-              <div className={`w-2 h-2 rounded-full ${connected ? 'bg-green-500' : 'bg-red-500'}`} />
-              <span className="text-sm font-medium text-gray-700">
-                {connected ? 'Connected' : 'Not Connected'}
-              </span>
-            </div>
+          <div className="mt-4">
+            <ConnectionStatus connected={connected} loading={loading} />
           </div>
         </div>
 
@@ -62,6 +58,17 @@ const Layout = ({ children }) => {
             );
           })}
         </nav>
+
+        {/* API Status Info */}
+        <div className="p-4 border-t border-gray-200 mt-auto">
+          <div className="text-xs text-gray-500">
+            <p className="mb-1">API Status:</p>
+            <div className="flex items-center space-x-1">
+              <div className={`w-2 h-2 rounded-full ${connected ? 'bg-green-400' : 'bg-red-400'}`} />
+              <span>{connected ? 'Online' : 'Offline'}</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Main Content */}
